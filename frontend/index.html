@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medical Report Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Medical Report Management System</h1>
+  <nav id="nav">
+    <button data-section="dashboard" class="active">Dashboard</button>
+    <button data-section="patients">Patients</button>
+    <button data-section="doctors">Doctors</button>
+    <button data-section="reports">Medical Reports</button>
+    <button data-section="history">Report History</button>
+  </nav>
+</header>
+
+<main>
+  <!-- Success / error messages appear here -->
+  <div id="msg" class="hidden"></div>
+
+  <!-- 1. DASHBOARD -->
+  <section id="dashboard" class="active">
+    <h2>Dashboard</h2>
+    <div class="cards">
+      <div class="stat"><b id="cPatients">-</b><span>Total Patients</span></div>
+      <div class="stat"><b id="cDoctors">-</b><span>Total Doctors</span></div>
+      <div class="stat"><b id="cReports">-</b><span>Total Reports</span></div>
+      <div class="stat"><b id="cHistory">-</b><span>History Records</span></div>
+    </div>
+  </section>
+
+  <!-- 2. PATIENTS -->
+  <section id="patients">
+    <h2>Patients</h2>
+    <form id="patientForm" class="panel">
+      <h3 id="patientFormTitle">Add Patient</h3>
+      <div class="form-grid">
+        <label>Name <input id="pName" required></label>
+        <label>Age <input id="pAge" type="number" required></label>
+        <label>Gender
+          <select id="pGender" required>
+            <option value="">Select gender</option>
+            <option>Male</option><option>Female</option><option>Other</option>
+          </select>
+        </label>
+        <label>Contact (10-15 digits) <input id="pContact" required></label>
+      </div>
+      <button type="submit" class="primary" id="patientSave">Add Patient</button>
+      <button type="button" class="secondary hidden" id="patientCancel">Cancel edit</button>
+    </form>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Patient ID</th><th>Name</th><th>Age</th><th>Gender</th><th>Contact</th><th>Actions</th></tr></thead>
+        <tbody id="patientRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 3. DOCTORS -->
+  <section id="doctors">
+    <h2>Doctors</h2>
+    <form id="doctorForm" class="panel">
+      <h3>Add Doctor</h3>
+      <div class="form-grid">
+        <label>Name <input id="dName" required></label>
+        <label>Specialization <input id="dSpec" required></label>
+      </div>
+      <button type="submit" class="primary">Add Doctor</button>
+    </form>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Doctor ID</th><th>Name</th><th>Specialization</th></tr></thead>
+        <tbody id="doctorRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4. MEDICAL REPORTS -->
+  <section id="reports">
+    <h2>Medical Reports</h2>
+    <form id="reportForm" class="panel">
+      <h3 id="reportFormTitle">Add Medical Report</h3>
+      <div class="form-grid">
+        <label>Patient <select id="rPatient" required></select></label>
+        <label>Doctor <select id="rDoctor" required></select></label>
+        <label>Report date <input id="rDate" type="date" required></label>
+      </div>
+      <div class="form-grid">
+        <label>Symptoms <textarea id="rSymptoms" required></textarea></label>
+        <label>Diagnosis <textarea id="rDiagnosis" required></textarea></label>
+        <label>Medicines <textarea id="rMedicines"></textarea></label>
+        <label>Test result <textarea id="rTest"></textarea></label>
+      </div>
+      <p id="rNote" class="note hidden">When editing, only symptoms, diagnosis, medicines and test result can change.</p>
+      <button type="submit" class="primary" id="reportSave">Add Report</button>
+      <button type="button" class="secondary hidden" id="reportCancel">Cancel edit</button>
+    </form>
+
+    <div class="toolbar">
+      <label>Show reports for <select id="filterPatient"></select></label>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Report ID</th><th>Patient</th><th>Doctor</th><th>Symptoms</th><th>Diagnosis</th><th>Medicines</th><th>Test Result</th><th>Date</th><th>Actions</th></tr></thead>
+        <tbody id="reportRows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 5. HISTORY -->
+  <section id="history">
+    <h2>Report History</h2>
+    <p class="note">Old versions of reports are saved here automatically by a PostgreSQL trigger when a report is updated or deleted.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>History ID</th><th>Report ID</th><th>Patient ID</th><th>Doctor ID</th><th>Symptoms</th><th>Diagnosis</th><th>Medicines</th><th>Test Result</th><th>Report Date</th><th>Operation</th><th>Changed At</th></tr></thead>
+        <tbody id="historyRows"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
