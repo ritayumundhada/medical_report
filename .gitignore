@@ -1,1 +1,17 @@
 
+# Python virtual environment
+venv/
+.venv/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# Local development files
+.DS_Store
+
