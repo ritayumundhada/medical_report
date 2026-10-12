@@ -1,0 +1,105 @@
+/* ---------- Colours (change them here in one place) ---------- */
+:root {
+  --teal: #0f766e;
+  --teal-dark: #115e59;
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #dbe3ea;
+  --danger: #b91c1c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------- Header and navigation ---------- */
+header { background: var(--teal); color: #fff; padding: 14px 24px; }
+header h1 { margin: 0 0 10px; font-size: 1.3rem; font-weight: 600; }
+
+nav button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  margin: 0 6px 6px 0;
+}
+nav button:hover, nav button.active { background: #fff; color: var(--teal-dark); }
+
+main { max-width: 1200px; margin: 20px auto; padding: 0 16px; }
+h2 { margin: 0 0 14px; }
+
+/* Only the active section is visible */
+section { display: none; }
+section.active { display: block; }
+.hidden { display: none !important; }
+
+/* ---------- Messages ---------- */
+#msg { padding: 10px 14px; border-radius: 6px; margin-bottom: 14px; }
+#msg.ok { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+#msg.error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+.note { color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- Dashboard cards ---------- */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--teal);
+  border-radius: 8px;
+  padding: 18px;
+}
+.stat b { display: block; font-size: 2rem; color: var(--teal-dark); }
+.stat span { color: var(--muted); }
+
+/* ---------- Forms ---------- */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+.panel h3 { margin: 0 0 12px; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 12px; }
+label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; color: var(--muted); }
+input, select, textarea {
+  font: inherit;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  background: #fff;
+}
+textarea { min-height: 64px; resize: vertical; }
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 1px;
+}
+.toolbar { margin-bottom: 12px; max-width: 320px; }
+
+/* ---------- Buttons ---------- */
+button { font: inherit; cursor: pointer; border: none; border-radius: 6px; padding: 8px 16px; }
+.primary { background: var(--teal); color: #fff; }
+.primary:hover { background: var(--teal-dark); }
+.secondary { background: #e2e8f0; color: var(--text); }
+.small { padding: 4px 10px; font-size: 0.85rem; background: #ccfbf1; color: var(--teal-dark); }
+.danger { background: #fee2e2; color: var(--danger); }
+
+/* ---------- Tables ---------- */
+.table-wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--border); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { padding: 9px 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+th { background: #e6f4f1; color: var(--teal-dark); white-space: nowrap; }
+td small { display: block; color: var(--muted); }
+td.center { text-align: center; color: var(--muted); }
+td button { margin-right: 4px; }
+
+.badge { padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; font-weight: 600; }
+.badge.UPDATE { background: #fef3c7; color: #92400e; }
+.badge.DELETE { background: #fee2e2; color: #991b1b; }
